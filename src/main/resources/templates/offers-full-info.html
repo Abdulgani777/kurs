@@ -1,0 +1,43 @@
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head"></head>
+
+<body class="d-flex flex-column min-vh-100">
+<div th:replace="fragments/navbar"></div>
+
+<main class="flex-shrink-0">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card mt-5">
+                    <div class="card-body text-center">
+                        <h2 class="card-title">Offer Details</h2>
+                    </div>
+                </div>
+
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <p><strong>Price:</strong> <span th:text="${offerWithInfo.price}"></span> rub</p>
+                        <p><strong>Seller:</strong> <span th:text="${offerWithInfo.seller}"></span></p>
+                        <p><strong>Model:</strong> <span th:text="${offerWithInfo.model}"></span></p>
+                        <p><strong>Brand:</strong> <span th:text="${offerWithInfo.brand}"></span></p>
+                        <p><strong>Mileage:</strong> <span th:text="${offerWithInfo.mileage}"></span> km</p>
+                        <p><strong>Transmission Type:</strong> <span th:text="${#strings.capitalize(#strings.toLowerCase(offerWithInfo.transmissionType))}"></span></p>
+                        <p><strong>Engine Type:</strong> <span th:text="${#strings.capitalize(#strings.toLowerCase(offerWithInfo.engineType))}"></span></p>
+                        <p><strong>Year:</strong> <span th:text="${offerWithInfo.year}"></span></p>
+                        <p><strong>Description:</strong> <span th:text="${offerWithInfo.description}"></span></p>
+                        <p><strong>Category:</strong> <span th:text="${#strings.capitalize(#strings.toLowerCase(offerWithInfo.category))}"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="fragments/footer"></footer>
+</body>
+
+</html>

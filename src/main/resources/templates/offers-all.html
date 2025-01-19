@@ -1,0 +1,77 @@
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head"></head>
+
+<body class="d-flex flex-column min-vh-100">
+<div th:replace="fragments/navbar"></div>
+<main class="flex-shrink-0">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card mt-5">
+                    <div class="card-body text-center">
+                        <h2 class="card-title">Offers List</h2>
+                    </div>
+                </div>
+                <div class="card mt-5">
+                    <div class="card-body text-center">
+                        <h2 class="card-title">Filter Offers</h2>
+                        <form class="filters-form" th:method="GET" th:action="@{/offers/filtered}">
+                            <div class="filter-box">
+                                <label th:for="categories">Categories:</label>
+                                <div class="filters">
+                                    <input type="checkbox" th:name="categories" th:value="CAR" th:checked="${param.categories != null && param.categories.contains('CAR')}"> Car
+                                    <input type="checkbox" th:name="categories" th:value="BUS" th:checked="${param.categories != null && param.categories.contains('BUS')}"> Bus
+                                    <input type="checkbox" th:name="categories" th:value="TRUCK" th:checked="${param.categories != null && param.categories.contains('TRUCK')}"> Truck
+                                    <input type="checkbox" th:name="categories" th:value="MOTORCYCLE" th:checked="${param.categories != null && param.categories.contains('MOTORCYCLE')}"> Motorcycle
+                                </div>
+                            </div>
+                            <div class="filter-box">
+                                <label th:for="engineType">Engine:</label>
+                                <div class="filters">
+                                    <input type="checkbox" th:name="engineTypes" th:value="GASOLINE" th:checked="${param.engineTypes != null && param.engineTypes.contains('GASOLINE')}"> Gasoline
+                                    <input type="checkbox" th:name="engineTypes" th:value="DIESEL" th:checked="${param.engineTypes != null && param.engineTypes.contains('DIESEL')}"> Diesel
+                                    <input type="checkbox" th:name="engineTypes" th:value="ELECTRIC" th:checked="${param.engineTypes != null && param.engineTypes.contains('ELECTRIC')}"> Electric
+                                    <input type="checkbox" th:name="engineTypes" th:value="HYBRID" th:checked="${param.engineTypes != null && param.engineTypes.contains('HYBRID')}"> Hybrid
+                                </div>
+                            </div>
+                            <div class="filter-box">
+                                <label th:for="transmissionTypes">Transmission:</label>
+                                <div class="filters">
+                                    <input type="checkbox" th:name="transmissionTypes" th:value="MANUAL" th:checked="${param.transmissionTypes != null && param.transmissionTypes.contains('MANUAL')}"> Manual
+                                    <input type="checkbox" th:name="transmissionTypes" th:value="AUTOMATIC" th:checked="${param.transmissionTypes != null && param.transmissionTypes.contains('AUTOMATIC')}"> Automatic
+                                </div>
+                                <div class="filters" th:if="${param.modelName != null}">
+                                    <input type="hidden" name="modelName" th:value="${param.modelName}">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3">Apply</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="card-deck mt-3 d-flex flex-wrap justify-content-center">
+                    <div th:each="o : ${allOffers}" class="card m-2" style="width: 18rem;">
+                        <div class="card-body text-center">
+                            <h5 class="card-title" th:text="${o.brand + ' ' + o.model}"></h5>
+                            <p class="card-text">
+                                <strong>Price:</strong> <span th:text="${o.price}"></span><br>
+                                <strong>Seller:</strong> <span th:text="${o.seller}"></span>
+                            </p>
+                            <div>
+                                <a th:href="@{/offers/details/{offerId}(offerId=${o.id})}"
+                                   class="btn btn-primary">Detail info</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer class="mt-auto" th:replace="fragments/footer"></footer>
+</body>
+
+</html>

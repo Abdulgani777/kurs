@@ -1,0 +1,6 @@
+<Appender name="P6SpyAppender" class="org.apache.logging.log4j.core.appender.FileAppender">
+    <FileName>C:/logs/mylogs.log</FileName>
+    <Layout class="org.apache.logging.log4j.core.layout.PatternLayout">
+        <Pattern>%d{yyyy-MM-dd HH:mm:ss} %msg%n</Pattern>
+    </Layout>
+</Appender>

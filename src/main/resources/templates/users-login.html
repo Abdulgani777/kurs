@@ -1,0 +1,44 @@
+
+
+<!DOCTYPE html>
+<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head}"></head>
+
+<body class="d-flex flex-column h-100">
+<div th:replace="~{fragments/navbar}"></div>
+
+<main class="flex-shrink-0">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-5">
+                    <div class="card-body">
+                        <h2 class="card-title text-center">Login</h2>
+
+                        <form th:action="@{/users/login}" th:method="post" class="w-75 mx-auto">
+                            <div class="mb-3">
+                                <label class="form-label" for="username">Username</label>
+                                <input id="username" name="username" th:value="${username}" type="text" class="form-control" required/>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="password">Password</label>
+                                <input id="password" name="password" type="password" class="form-control" required/>
+                            </div>
+
+                            <p class="text-danger" th:if="${badCredentials}">
+                                Invalid username or password.
+                            </p>
+
+                            <button type="submit" class="btn btn-primary w-100">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>

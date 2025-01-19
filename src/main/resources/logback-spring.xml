@@ -1,0 +1,28 @@
+<configuration>
+
+    <!-- Конфигурация для вывода в файл -->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>C:/logs/mylogs.log</file> <!-- Путь к вашему лог-файлу -->
+        <append>true</append> <!-- Добавлять в конец файла, если файл уже существует -->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} - %msg%n</pattern> <!-- Формат сообщений -->
+        </encoder>
+    </appender>
+
+    <!-- Конфигурация для вывода в консоль -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} - %msg%n</pattern> <!-- Формат сообщений -->
+        </encoder>
+    </appender>
+
+    <!-- Уровень логирования -->
+    <root level="INFO">
+        <appender-ref ref="FILE" />
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+    <!-- Дополнительные логгеры для других библиотек -->
+    <logger name="org.springframework.web" level="INFO" />
+    <logger name="org.hibernate.SQL" level="DEBUG" />
+</configuration>
